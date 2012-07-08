@@ -1,0 +1,38 @@
+1000/1000; M: 1; bag_size: 494827; oob_size: 287978; leaf_node_cnt: 4604; tree_gini: 14.905
+good_tree_cnt: 1000
+never out: 0; oob_correct: 0.992036; oob_ll: 0.0237284
+never out: 782805; validate_correct: nan; validate_ll: nan
+Key pressed: 
+
+never out: 0; oob_correct: 0.992036; oob_ll: 0.0237284
+never out: 782805; validate_correct: nan; validate_ll: nan
+writing tst set predictions...
+./score.pl workspace/oob_predict_2_1_1_1000.csv workspace/tst_predict_2_1_1_1000.csv
+ ---  workspace/oob_predict_2_1_1_1000.csv ---- 
+predict 10014 and validate 9835 have different counts
+Avg Map10: 0.683438692170642
+./score.pl workspace/oob_predict_2_1_2_1000.csv workspace/tst_predict_2_1_2_1000.csv
+ ---  workspace/oob_predict_2_1_2_1000.csv ---- 
+predict 10014 and validate 9835 have different counts
+Avg Map10: 0.678325436631654
+./score.pl workspace/oob_predict_2_1_3_1000.csv workspace/tst_predict_2_1_3_1000.csv
+ ---  workspace/oob_predict_2_1_3_1000.csv ---- 
+predict 10014 and validate 9835 have different counts
+Avg Map10: 0.674476211455162
+./score.pl workspace/oob_predict_3_1_1_1000.csv workspace/tst_predict_3_1_1_1000.csv
+ ---  workspace/oob_predict_3_1_1_1000.csv ---- 
+predict 10014 and validate 9835 have different counts
+Avg Map10: 0.718629774330767
+
+
+2try
+Fs,LsFs,LsFsLs: 100 trees x 1000 samples x step1 1 mtry = 0.629
+Fs,LsFs,LsFsLs: 1000 trees x 10000 samples x step1 1 mtry (leaderboard) = 0.673 (0.67908)
+Fs,LsFs,LsFsLs: 1000 trees x 10000 samples x step2 1 mtry (leaderboard) = 0.7109 (0.66670)
+
+Fs,LsLs,LsFs,LsFsLs: 100 trees x 1000 samples x step1 1 mtry = 0.637 ()
+Fs,LsLs,LsFs,LsFsLs: 1000 trees x 10000 samples x step1 1 mtry (leaderboard) = 0.683 ()
+Fs,LsLs,LsFs,LsFsLs: 1000 trees x 10000 samples x step2 1 mtry (leaderboard) = 0.718 ()
+
+Fs,FsLs,FsFs,LsLs,LsFs,LsFsLs: 100 trees x 1000 samples x step1 1 mtry = 0.644 ()
+
