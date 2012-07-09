@@ -669,7 +669,7 @@ xData::xData(char* trainFile, char* testFile, int seed, int limit_train, int lim
       }
    }
    cout << "Predicting missing edges..." << endl;
-   if(0) {
+   if(1) {
       cout << "   determining friends and connect back rates..." << endl;
       stringstream ss;
       ss.str(""); ss << "cache/ConnectBack_" << seed << "_" << limit_train << ".csv";
@@ -882,7 +882,7 @@ xData::xData(char* trainFile, char* testFile, int seed, int limit_train, int lim
          }
          rfValidate << endl;
          
-         if(0) {
+         if(1) {
             vector<int> myDepth(DEPTH,0);
             int maxdepth = recGetDepth(id,myDepth,0);
             cout << id << " (" << maxdepth << ") : " << myDepth[0] << "," << myDepth[1] << "," \
