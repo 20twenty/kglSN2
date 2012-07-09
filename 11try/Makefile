@@ -75,19 +75,19 @@ workspace/rf: bin/rf
 	rm -f workspace/tst_predict_*_1_$(MTRY)_$(TREES)
 	$(foreach var,$(NUMBERS),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
 	./bin/rf 2 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_2_1_$(MTRY)_$(TREES)
-	#sleep 600
-	#$(foreach var,$(NUMBERSA),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
-	#./bin/rf 12 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_12_1_$(MTRY)_$(TREES)
-	#sleep 600
-	#$(foreach var,$(NUMBERSB),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
-	#./bin/rf 22 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_22_1_$(MTRY)_$(TREES)
-	#sleep 300
-	#$(foreach var,$(NUMBERSC),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
-	#./bin/rf 32 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_32_1_$(MTRY)_$(TREES)
-	#sleep 300
-	#$(foreach var,$(NUMBERSD),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
-	#./bin/rf 42 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_42_1_$(MTRY)_$(TREES)
-	#sleep 300
+	sleep 600
+	$(foreach var,$(NUMBERSA),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
+	./bin/rf 12 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_12_1_$(MTRY)_$(TREES)
+	sleep 600
+	$(foreach var,$(NUMBERSB),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
+	./bin/rf 22 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_22_1_$(MTRY)_$(TREES)
+	sleep 600
+	$(foreach var,$(NUMBERSC),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
+	./bin/rf 32 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_32_1_$(MTRY)_$(TREES)
+	sleep 600
+	$(foreach var,$(NUMBERSD),(./bin/rf $(var) 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_$(var)_1_$(MTRY)_$(TREES) &);)
+	./bin/rf 42 1 $(MTRY) $(TREES) workspace/step1_train.csv workspace/step1_test.csv $(SUBF) > log_42_1_$(MTRY)_$(TREES)
+	sleep 600
 	rm -f workspace/score
 	touch workspace/rf
 
