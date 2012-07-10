@@ -19,8 +19,8 @@ NUMBERSD = 43 44 45 46 47 48 49
 
 GROUPS = 2 3 4 5 6 7 8
 LAST_GROUP=8
-#TEST_SAMPLE=1000
-TEST_SAMPLE=20000
+TEST_SAMPLE=1000
+#TEST_SAMPLE=20000
 
 test: exe xform_test rf sleep_test score
 predict: exe xform_predict rf sleep_predict score

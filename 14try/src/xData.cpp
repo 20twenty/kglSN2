@@ -494,8 +494,8 @@ xData::xData(char* trainFile, char* testFile, int seed, int limit_train, int lim
    //srand(3112001);
    srand(seed);
 
-   //int leave_out_cnt = 262588;
-   int leave_out_cnt = limit_train;
+   int leave_out_cnt = 262588;
+   //int leave_out_cnt = limit_train;
    if(limit_test <= 0) leave_out_cnt = 0;
 
    vector<pair<int,int> > all_edges;
@@ -602,7 +602,8 @@ xData::xData(char* trainFile, char* testFile, int seed, int limit_train, int lim
          if(A == 0) continue;  // there is no node with id = 0;
          int lsize = graph_[A].leaders.size();
          int fsize = graph_[A].followers.size();
-         if((lsize+fsize) <= 1 ) continue;
+         //if((lsize+fsize) <= 1 ) continue;
+         if( fsize < 1 || lsize < 1 ) continue;
          int random_pick = rand() % (lsize+fsize);
          //if(lsize == 0) continue;
          //int random_pick = rand() % lsize;
@@ -611,14 +612,17 @@ xData::xData(char* trainFile, char* testFile, int seed, int limit_train, int lim
             for(int i=0; i < random_pick; i++) {it_B++;}
             if(test_set.find(A) != test_set.end()) continue;  // do not sample from sources in the test set
             if((graph_[*it_B].followers.size() + graph_[*it_B].leaders.size()) <= 1) continue;
+            //if((graph_[*it_B].followers.size() < 1 || graph_[*it_B].leaders.size()) < 1) continue;
             validate_[A].insert(*it_B);
             graph_[A].leaders.erase(*it_B);
             graph_[*it_B].followers.erase(A);
          } else {
+            //continue;
             it_B = graph_[A].followers.begin();
             for(int i=lsize; i < random_pick; i++) {it_B++;}
             if(test_set.find(*it_B) != test_set.end()) continue;  // do not sample from sources in the test set
             if((graph_[*it_B].followers.size() + graph_[*it_B].leaders.size()) <= 1) continue;
+            //if((graph_[*it_B].followers.size() < 1 || graph_[*it_B].leaders.size()) < 1) continue;
             validate_[*it_B].insert(A);
             graph_[*it_B].leaders.erase(A);
             graph_[A].followers.erase(*it_B);

@@ -1,15 +1,27 @@
 #!/usr/bin/perl
 
-for ($m=1; $m < 4; $m++) {
-   $oobmap{"workspace_m${m}/oob_predict_merge.csv"} = $m;
-   $tstmap{"workspace_m${m}/tst_predict_merge.csv"} = $m;
+$directory = shift @ARGV;
+$pre = shift @ARGV;
+$post = shift @ARGV;
+opendir(DIR, $directory);
+while($myfile = readdir(DIR)) {
+   if($myfile =~ /^oob\w+$pre(\d+)$post\.csv$/) {  
+      if($1 > 0) {
+         $oobmap{$myfile} = $1;
+      }
+   }
+   if($myfile =~ /^tst\w+$pre(\d+)$post\.csv$/) {  
+      if($1 > 0) {
+         $tstmap{$myfile} = $1;
+      }
+   }
 }
 
 @attr = ();
 $col = 0;
 foreach $f (sort {$oobmap{$a} <=> $oobmap{$b}} (keys %oobmap)) {
    print $f . "\n";
-   open(INF,"<$f") or die "Can't open $f";
+   open(INF,"<$directory/$f") or die "Can't open $directory/$f";
    $row = 0;
    while(<INF>) {
       if($_ =~ /^(\d),(\S+)$/) {
@@ -24,19 +36,14 @@ foreach $f (sort {$oobmap{$a} <=> $oobmap{$b}} (keys %oobmap)) {
    $col++;
 }
 
-open(OUTF,">workspace/step2_train.csv") or die "Can't open workspace/step2_train.csv";
-print OUTF "Activity";
-for ($c=0; $c < $col; $c++) {
-   $cc = $c+1;
-   print OUTF ",D$cc";
-}
-print OUTF "\n";
+open(OUTF,">$directory/oob_predict_merge.csv") or die "Can't open $directory/oob_predict_merge.csv";
 for ($r=0; $r < $row; $r++) {
-   print OUTF $target[$r];
+   $sum=0;
    for ($c=0; $c < $col; $c++) {
-      print OUTF ",$attr[$r][$c]"
+      $sum+=$attr[$r][$c];
    }
-   print OUTF "\n";
+   $avg = $sum / $col;
+   print OUTF "$target[$r],$avg\n";
 }
 close(OUTF);
 
@@ -44,7 +51,7 @@ close(OUTF);
 $col = 0;
 foreach $f (sort {$tstmap{$a} <=> $tstmap{$b}} (keys %tstmap)) {
    print $f . "\n";
-   open(INF,"<$f") or die "Can't open $f";
+   open(INF,"<$directory/$f") or die "Can't open $directory/$f";
    $row = 0;
    while(<INF>) {
       if($_ =~ /^(\S+)$/) {
@@ -58,19 +65,14 @@ foreach $f (sort {$tstmap{$a} <=> $tstmap{$b}} (keys %tstmap)) {
    $col++;
 }
 
-open(OUTF,">workspace/step2_test.csv") or die "Can't open workspace/step2_test.csv";
-for ($c=0; $c < $col; $c++) {
-   if($c != 0) { print OUTF ","; }
-   $cc = $c+1;
-   print OUTF "D$cc";
-}
-print OUTF "\n";
+open(OUTF,">$directory/tst_predict_merge.csv") or die "Can't open $directory/tst_predict_merge.csv";
 for ($r=0; $r < $row; $r++) {
+   $sum=0;
    for ($c=0; $c < $col; $c++) {
-      if($c != 0) { print OUTF ","; }
-      print OUTF "$attr[$r][$c]"
+      $sum += $attr[$r][$c];
    }
-   print OUTF "\n";
+   $avg = $sum / $col;
+   print OUTF "$avg\n";
 }
 close(OUTF);
 
