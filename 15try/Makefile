@@ -7,7 +7,7 @@ MTRY=2
 TREES=200
 #TREES=333
 SEED=31120011
-SUBF = 1
+SUBF = 0
 #NUMBERS = 3 4
 NUMBERS = 3 4 5 6 7 8 9
 NUMBERSA = 13 14 15 16 17 18 19
@@ -30,9 +30,9 @@ xform_test: workspace/xform_test
 xform_predict: workspace/xform_predict
 rf: workspace/rf
 sleep_test:
-	sleep 600
+	sleep 5
 sleep_predict:
-	sleep 300
+	sleep 600
 score: workspace/score
 
 bin/xform: src/xform.cpp src/xData.cpp src/xData.h
