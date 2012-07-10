@@ -30,9 +30,9 @@ xform_test: workspace/xform_test
 xform_predict: workspace/xform_predict
 rf: workspace/rf
 sleep_test:
-	sleep 600
+	sleep 5
 sleep_predict:
-	sleep 300
+	sleep 600
 score: workspace/score
 
 bin/xform: src/xform.cpp src/xData.cpp src/xData.h
